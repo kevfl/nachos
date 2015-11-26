@@ -89,6 +89,10 @@ AddrSpace::AddrSpace(OpenFile *executable)
 	for (i = 0; i < numPages; i++) {
 	pageTable[i].virtualPage = i;	// for now, virtual page # = phys page #
 	pageTable[i].physicalPage = i;
+/*
+	Se inicializan todas las páginas del pageTable inválidas cuando se usa 
+	VirtualMemory(VM).
+*/
 #ifdef VM
 	pageTable[i].valid = false;
 #else
@@ -100,7 +104,11 @@ AddrSpace::AddrSpace(OpenFile *executable)
 					// a separate page, we could set its
 					// pages to be read-only
 	}
-
+/*
+	Se elimina la parte de carga del archivo a disco, a fin de
+	que no se cargue ninguna página a memoria cuando se usa el 
+	VirtualMemory(VM).
+*/
 #ifndef VM
 // zero out the entire address space, to zero the unitialized data segment
 // and the stack segment
@@ -175,6 +183,9 @@ AddrSpace::InitRegisters()
 
 void AddrSpace::SaveState()
 {
+/*
+	Se guarda en la TLB el estado de la página que esta en memoria. 
+*/
 #ifdef VM
 	DEBUG('v', "Saving state de la TLB\n" );
 	for (int i = 0; i < TLBSize; i++) {
@@ -194,6 +205,9 @@ void AddrSpace::SaveState()
 
 void AddrSpace::RestoreState()
 {
+/*
+	Reinicia el estado de la TBL, que se ocupa que este inválido.
+*/
 #ifdef VM
 	DEBUG('v', "Restore invalidando la TLB\n" );
 	for (int i = 0; i < TLBSize; i++) {
@@ -205,12 +219,22 @@ void AddrSpace::RestoreState()
 #endif
 }
 
+/*
+	Método setFilname, recibe como parámetros const chart* filename, int len.
+	Nombra el archivo con el nombre que nos pasan.
+	Se modifica *file de addrspace.
+*/
 void AddrSpace::setFilename(const char *filename, int len) {
 	file = new char[len+1];
 	strcpy(file, filename);
 	DEBUG('v', "Ejecutable: %s\n", file );
 }
 
+/*
+	Método updateTLB, recibe como parámetro un int page.
+	Guarda en el TBL la página 'page' que esta en memoria.
+	Modifica la TLB en la dirección dada por page.
+*/
 void AddrSpace::updateTLB(int page) {
 	DEBUG('v', "En posición %d del TLB copio pageTable[%d]\n", pTLB, page );
 	machine->tlb[ pTLB ].virtualPage = pageTable[ page ].virtualPage;
@@ -224,6 +248,13 @@ void AddrSpace::updateTLB(int page) {
 	pTLB = (pTLB + 1) % TLBSize;
 }
 
+/*
+	Método getPage, recibe como parámetro int page.
+	Busca si existe una posición de memoria libre. De no encontrar
+	tal posición en memoria, manda al Swap la página *pSwap y aumenta dicho
+	puntero.
+	Devuelve una página libre.
+*/
 int AddrSpace::getPage() {
 	int next = fileMap->Find();
 	if (next == -1) {
@@ -235,6 +266,12 @@ int AddrSpace::getPage() {
 	return next;
 }
 
+/*
+	Método fromFile, recibe como parámetro una página.
+	Si es un archivo válido, modifica el pageTable en la página 
+	que se manda como parámetro, además carga dicha página memoria.
+	Si es un archivo valido, modifica el pageTable y la memoria principal.
+*/
 void AddrSpace::fromFile(int page) {
 	pageTable[page].valid = true;
 
@@ -250,7 +287,7 @@ void AddrSpace::fromFile(int page) {
 		(WordToHost(noffH.noffMagic) == NOFFMAGIC))
 		SwapHeader(&noffH);
 	ASSERT(noffH.noffMagic == NOFFMAGIC);
-
+	
 	int filAddr = noffH.code.inFileAddr + pageTable[page].virtualPage * PageSize;
 	int physicalPage = getPage();
 	int memAddr = /*noffH.code.virtualAddr +*/ physicalPage * PageSize;
@@ -260,24 +297,33 @@ void AddrSpace::fromFile(int page) {
 	}
 }
 
+
+/*
+	Método Load, recibe como parámetro una página.
+	Implementa tabla de decisión para cargar la página en el TLB. Se encarga
+	de controlar el pageTable con sus posibles casos: que la página 
+	este sucia, vacía, válida o inválida.
+	Modifica según el caso la pageTable, la página que esta en memoria,
+	o la memoria.
+*/
 void AddrSpace::load(int page) {
 	//int memAddr = pageTable[page].physicalPage * PageSize;
-	if (pageTable[page].valid) {	// está en la memoria
+	if (pageTable[page].valid) {			// La página está en memoria.
 		DEBUG('v', "Pág. %d está en la memoria\n", page );
 		updateTLB(page);
-	} else {						// no está en la memoria
+	} else {								// La página no está en la memoria.
 		DEBUG('v', "Pág. %d no está en la memoria\n", page );
-		if (pageTable[page].dirty) {
+		if (pageTable[page].dirty) {		// La página está sucia.
 			DEBUG('v', "Pág. %d está sucia\n", page );
 			//fromSwap(page);
 			updateTLB(page);
-		} else {					// está limpia
+		} else {							// La página está limpia.
 			DEBUG('v', "Pág. %d está limpia\n", page );
-			if ( inFile(page) ) {	// está en el archivo
+			if ( inFile(page) ) {			// Proviene de un archivo.
 				DEBUG('v', "Pág. %d viene del archivo\n", page );
 				fromFile(page);
 				updateTLB(page);
-			} else {
+			} else {						// Es una página en blanco.
 				DEBUG('v', "Pág. %d de ceros\n", page );
 				//bzero(&(machine->mainMemory[memAddr], PageSize);
 				//valid
@@ -287,6 +333,13 @@ void AddrSpace::load(int page) {
 	}
 }
 
+
+
+/*
+	Método inFile, recibe como parámetro un int page.
+	Función que indica si la página existe o no en el archivo.
+	Devuelve un booleano con la respuesta.
+*/
 bool AddrSpace::inFile(int page) {
 	OpenFile *executable = fileSystem->Open(file);
 	if (executable == NULL) {

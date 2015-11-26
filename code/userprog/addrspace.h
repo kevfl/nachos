@@ -31,20 +31,22 @@ class AddrSpace {
     void SaveState();			// Save/restore address space-specific
     void RestoreState();		// info on a context switch
 
-	void setFilename(const char *filename, int len);
-	void load(int page);
-	bool inFile(int page);
+	void setFilename(const char *filename, int len);	//  Nombra el archivo con el nombre que nos pasan.
+	void load(int page);		//  Implementa tabla de decisión para cargar la página en el TLB.
+	bool inFile(int page);	//	Indica si la página existe o no en el archivo.
 
   private:
     TranslationEntry *pageTable;	// Assume linear page table translation
 					// for now!
     unsigned int numPages;		// Number of pages in the virtual
 					// address space
-	char *file;
+	char *file;									// Nombre del archivo.
 
-	int getPage();
-	void fromFile(int page);
-	void updateTLB(int page);
+	int getPage();							//  Busca si existe una posición de memoria libre.
+															//  Devuelve una página libre.
+	void fromFile(int page);		//  Si es un archivo válido, modifica el pageTable en la página 
+															//  que se manda como parámetro, además carga dicha página memoria.
+	void updateTLB(int page);		//  Guarda en el TBL la página 'page' que esta en memoria.
 };
 
 #endif // ADDRSPACE_H

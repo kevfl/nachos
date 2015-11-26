@@ -85,6 +85,10 @@ ExceptionHandler(ExceptionType which)
 		}
 		break;
 	case PageFaultException:
+		/*
+			Se atrapa la excepción del PageFault, se llama el metodo de decisión
+			ubicado en addspace llamado load con la página que dio el error..
+		*/
 		page = BadVAddrReg / 128;
 		DEBUG('w', "%d: PageFaultException in log page %d\n", ++pf, page );
 		currentThread->space->load(page);
