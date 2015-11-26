@@ -45,7 +45,7 @@ PostOffice *postOffice;
 int pTLB;
 OpenFile *swap;
 int pSwap;
-BitMap *fileMap;
+BitMap *memMap;
 BitMap *swapMap;
 #endif
 
@@ -206,7 +206,7 @@ Initialize(int argc, char **argv)
 	ASSERT( fileSystem->Create("SWAP", 0) );
 	swap = fileSystem->Open("SWAP");
 	pSwap = 0;
-	fileMap = new BitMap(NumPhysPages);
+	memMap = new BitMap(NumPhysPages);
 	swapMap = new BitMap(NumPhysPages * 2);
 #endif
 
@@ -236,7 +236,7 @@ Cleanup()
 #ifdef VM
 	ASSERT( fileSystem->Remove("SWAP") );
 	swap = NULL;
-	delete fileMap;
+	delete memMap;
 	delete swapMap;
 #endif
 

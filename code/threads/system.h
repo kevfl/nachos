@@ -54,7 +54,7 @@ extern PostOffice* postOffice;
 extern int pTLB;
 extern OpenFile *swap;
 extern int pSwap;
-extern BitMap *fileMap;
+extern BitMap *memMap;
 extern BitMap *swapMap;
 #endif
 

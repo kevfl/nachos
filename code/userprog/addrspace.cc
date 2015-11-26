@@ -225,9 +225,9 @@ void AddrSpace::updateTLB(int page) {
 }
 
 int AddrSpace::getPage() {
-	int next = fileMap->Find();
+	int next = memMap->Find();
 	if (next == -1) {
-		//toSwap(page);
+		//toSwap(pSwap);
 		next = pSwap;
 		pSwap = (pSwap + 1) % NumPhysPages;
 	}
@@ -254,7 +254,7 @@ void AddrSpace::fromFile(int page) {
 	int filAddr = noffH.code.inFileAddr + pageTable[page].virtualPage * PageSize;
 	int physicalPage = getPage();
 	int memAddr = /*noffH.code.virtualAddr +*/ physicalPage * PageSize;
-	DEBUG('v', "Escribe en RAM at %d\n", memAddr );
+	DEBUG('v', "Escribe en RAM at %d. Inicio %d\n", memAddr, noffH.code.virtualAddr );
 	if (noffH.code.size > 0) {
 		executable->ReadAt(&(machine->mainMemory[memAddr]), PageSize, filAddr);
 	}
