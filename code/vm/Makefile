@@ -35,7 +35,7 @@ main.o: ../threads/main.cc /usr/include/stdc-predef.h \
  ../threads/copyright.h /usr/include/stdlib.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -47,7 +47,7 @@ main.o: ../threads/main.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/system.h ../threads/thread.h \
  ../machine/machine.h ../threads/utility.h ../machine/translate.h \
@@ -61,7 +61,7 @@ scheduler.o: ../threads/scheduler.cc /usr/include/stdc-predef.h \
  /usr/include/stdlib.h /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -73,7 +73,7 @@ scheduler.o: ../threads/scheduler.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -87,7 +87,7 @@ synch.o: ../threads/synch.cc /usr/include/stdc-predef.h \
  /usr/include/stdlib.h /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -99,7 +99,7 @@ synch.o: ../threads/synch.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/machine.h ../threads/utility.h \
  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
@@ -113,7 +113,7 @@ system.o: ../threads/system.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -125,7 +125,7 @@ system.o: ../threads/system.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -139,7 +139,7 @@ thread.o: ../threads/thread.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -151,7 +151,7 @@ thread.o: ../threads/thread.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/machine.h ../threads/utility.h \
  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
@@ -165,7 +165,7 @@ utility.o: ../threads/utility.cc /usr/include/stdc-predef.h \
  ../threads/copyright.h /usr/include/stdlib.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -177,7 +177,7 @@ utility.o: ../threads/utility.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h
 threadtest.o: ../threads/threadtest.cc /usr/include/stdc-predef.h \
@@ -186,7 +186,7 @@ threadtest.o: ../threads/threadtest.cc /usr/include/stdc-predef.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/posix_opt.h \
  /usr/include/bits/environments.h /usr/include/bits/types.h \
  /usr/include/bits/typesizes.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/confname.h /usr/include/getopt.h \
  ../threads/copyright.h ../threads/system.h ../threads/utility.h \
  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdlib.h \
@@ -200,7 +200,7 @@ threadtest.o: ../threads/threadtest.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -215,7 +215,7 @@ dinningph.o: ../threads/dinningph.cc /usr/include/stdc-predef.h \
  ../threads/copyright.h /usr/include/stdlib.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -227,7 +227,7 @@ dinningph.o: ../threads/dinningph.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/machine.h ../threads/utility.h \
  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
@@ -238,7 +238,7 @@ interrupt.o: ../machine/interrupt.cc /usr/include/stdc-predef.h \
  /usr/include/stdlib.h /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -250,7 +250,7 @@ interrupt.o: ../machine/interrupt.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/system.h ../threads/thread.h \
  ../machine/machine.h ../threads/utility.h ../machine/translate.h \
@@ -262,10 +262,10 @@ sysdep.o: ../machine/sysdep.cc /usr/include/stdc-predef.h \
  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
  /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h /usr/include/xlocale.h /usr/include/signal.h \
  /usr/include/bits/sigset.h /usr/include/bits/signum.h \
@@ -305,7 +305,7 @@ stats.o: ../machine/stats.cc /usr/include/stdc-predef.h \
  ../machine/sysdep.h /usr/include/stdlib.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -317,7 +317,7 @@ stats.o: ../machine/stats.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/stats.h
 timer.o: ../machine/timer.cc /usr/include/stdc-predef.h \
@@ -326,7 +326,7 @@ timer.o: ../machine/timer.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -338,7 +338,7 @@ timer.o: ../machine/timer.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/system.h ../threads/utility.h \
  ../threads/thread.h ../machine/machine.h ../machine/translate.h \
@@ -352,7 +352,7 @@ preemptive.o: ../threads/preemptive.cc /usr/include/stdc-predef.h \
  /usr/include/stdlib.h /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -364,7 +364,7 @@ preemptive.o: ../threads/preemptive.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -385,7 +385,7 @@ addrspace.o: ../userprog/addrspace.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -397,7 +397,7 @@ addrspace.o: ../userprog/addrspace.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -412,7 +412,7 @@ bitmap.o: ../userprog/bitmap.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -424,7 +424,7 @@ bitmap.o: ../userprog/bitmap.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../filesys/openfile.h
 exception.o: ../userprog/exception.cc /usr/include/stdc-predef.h \
@@ -433,7 +433,7 @@ exception.o: ../userprog/exception.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -445,7 +445,7 @@ exception.o: ../userprog/exception.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -459,7 +459,7 @@ progtest.o: ../userprog/progtest.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -471,7 +471,7 @@ progtest.o: ../userprog/progtest.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/thread.h ../machine/machine.h \
  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
@@ -486,7 +486,7 @@ console.o: ../machine/console.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -498,7 +498,7 @@ console.o: ../machine/console.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../threads/system.h ../threads/utility.h \
  ../threads/thread.h ../machine/machine.h ../machine/translate.h \
@@ -512,7 +512,7 @@ machine.o: ../machine/machine.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -524,7 +524,7 @@ machine.o: ../machine/machine.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/translate.h ../machine/disk.h \
  ../threads/system.h ../threads/utility.h ../threads/thread.h \
@@ -538,7 +538,7 @@ mipssim.o: ../machine/mipssim.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -550,7 +550,7 @@ mipssim.o: ../machine/mipssim.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/translate.h ../machine/disk.h \
  ../machine/mipssim.h ../threads/system.h ../threads/utility.h \
@@ -565,7 +565,7 @@ translate.o: ../machine/translate.cc /usr/include/stdc-predef.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/endian.h /usr/include/bits/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/types.h \
@@ -577,7 +577,7 @@ translate.o: ../machine/translate.cc /usr/include/stdc-predef.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-float.h \
  /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h \
  /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-unknown-linux-gnu/5.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/5.1.1/include/stdarg.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/string.h ../machine/translate.h ../machine/disk.h \
  ../userprog/addrspace.h ../filesys/filesys.h ../filesys/openfile.h \

@@ -67,7 +67,8 @@ ExceptionHandler(ExceptionType which)
 {
     int type = machine->ReadRegister(2);
 	static int pf = 0;
-	int page;
+	int dir, page;
+	static int cnt = 3;
 
 	switch ( which ) {
 	case SyscallException:
@@ -89,9 +90,12 @@ ExceptionHandler(ExceptionType which)
 			Se atrapa la excepción del PageFault, se llama el metodo de decisión
 			ubicado en addspace llamado load con la página que dio el error..
 		*/
-		page = BadVAddrReg / 128;
-		DEBUG('w', "%d: PageFaultException in log page %d\n", ++pf, page );
+		dir = machine->ReadRegister( BadVAddrReg );
+		page = dir / PageSize;
+		DEBUG('w', "%d: PageFaultException at addr %d in log page %d\n", ++pf, dir, page );
 		currentThread->space->load(page);
+		DEBUG('v', "Regresa de load\n");
+		if (!cnt--) exit(0);
 		break;
 	default:
 		printf( "Unexpected exception %d\n", which );
