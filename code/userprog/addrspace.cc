@@ -240,9 +240,9 @@ void AddrSpace::updateTLB(int page) {
 	machine->tlb[ pTLB ].virtualPage = pageTable[ page ].virtualPage;
 	machine->tlb[ pTLB ].physicalPage = pageTable[ page ].physicalPage;
 	machine->tlb[ pTLB ].dirty = pageTable[ page ].dirty;
-	DEBUG('v', "\tvirtualPage = %d\n", pageTable[ page ].virtualPage );
-	DEBUG('v', "\tphysicalPage = %d\n", pageTable[ page ].physicalPage );
-	DEBUG('v', "\tdirty = %d\n", pageTable[ page ].dirty );
+	//DEBUG('v', "\tvirtualPage = %d\n", pageTable[ page ].virtualPage );
+	//DEBUG('v', "\tphysicalPage = %d\n", pageTable[ page ].physicalPage );
+	//DEBUG('v', "\tdirty = %d\n", pageTable[ page ].dirty );
 	machine->tlb[ pTLB ].use = true;
 	machine->tlb[ pTLB ].valid = true;
 	pTLB = (pTLB + 1) % TLBSize;
@@ -258,11 +258,12 @@ void AddrSpace::updateTLB(int page) {
 int AddrSpace::getPage() {
 	int next = memMap->Find();
 	if (next == -1) {
-		//toSwap(pSwap);
-		next = pSwap;
-		pSwap = (pSwap + 1) % NumPhysPages;
+		//pageTable[tinv[pMem]].dirty = true;
+		//toSwap(pMem);
+		next = pMem;
+		pMem = (pMem + 1) % NumPhysPages;
 	}
-	DEBUG('v', "A seguir pág %d\n", next );
+	DEBUG('v', "Entregada la pág %d\n", next );
 	return next;
 }
 
@@ -288,8 +289,11 @@ void AddrSpace::fromFile(int page) {
 		SwapHeader(&noffH);
 	ASSERT(noffH.noffMagic == NOFFMAGIC);
 	
-	int filAddr = noffH.code.inFileAddr + pageTable[page].virtualPage * PageSize;
 	int physicalPage = getPage();
+	DEBUG('v', "physicalPage %d\n", physicalPage );
+	pageTable[ page ].physicalPage = physicalPage;
+	
+	int filAddr = noffH.code.inFileAddr + pageTable[page].virtualPage * PageSize;
 	int memAddr = /*noffH.code.virtualAddr +*/ physicalPage * PageSize;
 	DEBUG('v', "Escribe en RAM at %d. Inicio %d\n", memAddr, noffH.code.virtualAddr );
 	if (noffH.code.size > 0) {
@@ -297,6 +301,16 @@ void AddrSpace::fromFile(int page) {
 	}
 }
 
+void AddrSpace::getBlank(int page) {
+	pageTable[page].valid = true;
+
+	int physicalPage = getPage();
+	DEBUG('v', "physicalPage %d\n", physicalPage );
+	pageTable[ page ].physicalPage = physicalPage;
+
+	int memAddr = /*noffH.code.virtualAddr +*/ physicalPage * PageSize;
+	bzero(machine->mainMemory + memAddr, PageSize);
+}
 
 /*
 	Método Load, recibe como parámetro una página.
@@ -307,33 +321,29 @@ void AddrSpace::fromFile(int page) {
 	o la memoria.
 */
 void AddrSpace::load(int page) {
-	//int memAddr = pageTable[page].physicalPage * PageSize;
 	if (pageTable[page].valid) {			// La página está en memoria.
-		DEBUG('v', "Pág. %d está en la memoria\n", page );
+		DEBUG('v', "\tPág. %d está en la memoria\n", page );
 		updateTLB(page);
 	} else {								// La página no está en la memoria.
-		DEBUG('v', "Pág. %d no está en la memoria\n", page );
+		DEBUG('v', "\tPág. %d no está en la memoria\n", page );
 		if (pageTable[page].dirty) {		// La página está sucia.
-			DEBUG('v', "Pág. %d está sucia\n", page );
+			DEBUG('v', "\tPág. %d está sucia\n", page );
 			//fromSwap(page);
 			updateTLB(page);
 		} else {							// La página está limpia.
-			DEBUG('v', "Pág. %d está limpia\n", page );
+			DEBUG('v', "\tPág. %d está limpia\n", page );
 			if ( inFile(page) ) {			// Proviene de un archivo.
-				DEBUG('v', "Pág. %d viene del archivo\n", page );
+				DEBUG('v', "\tPág. %d viene del archivo\n", page );
 				fromFile(page);
 				updateTLB(page);
 			} else {						// Es una página en blanco.
-				DEBUG('v', "Pág. %d de ceros\n", page );
-				//bzero(&(machine->mainMemory[memAddr], PageSize);
-				//valid
+				DEBUG('v', "\tPág. %d de ceros\n", page );
+				getBlank(page);
 				updateTLB(page);
 			}
 		}
 	}
 }
-
-
 
 /*
 	Método inFile, recibe como parámetro un int page.

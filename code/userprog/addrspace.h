@@ -45,6 +45,7 @@ class AddrSpace {
 	int getPage();							//  Busca si existe una posición de memoria libre.
 															//  Devuelve una página libre.
 	void fromFile(int page);		//  Si es un archivo válido, modifica el pageTable en la página 
+	void getBlank(int page);
 															//  que se manda como parámetro, además carga dicha página memoria.
 	void updateTLB(int page);		//  Guarda en el TBL la página 'page' que esta en memoria.
 };

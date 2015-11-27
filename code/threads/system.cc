@@ -41,13 +41,10 @@ PostOffice *postOffice;
 #endif
 
 #ifdef VM
-/*
-
-*/
-//#include "filesys.h"
 int pTLB;
-OpenFile *swap;
+int pMem;
 int pSwap;
+OpenFile *swap;
 BitMap *memMap;
 BitMap *swapMap;
 #endif
@@ -206,9 +203,10 @@ Initialize(int argc, char **argv)
 
 #ifdef VM
 	pTLB = 0;
+	pMem = 0;
+	pSwap = 0;
 	ASSERT( fileSystem->Create("SWAP", 0) );
 	swap = fileSystem->Open("SWAP");
-	pSwap = 0;
 	memMap = new BitMap(NumPhysPages);
 	swapMap = new BitMap(NumPhysPages * 2);
 #endif

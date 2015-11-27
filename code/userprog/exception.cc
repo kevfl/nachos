@@ -62,13 +62,11 @@ void Nachos_Exit() {					// System call 1
 	currentThread->Finish();
 }	// Nachos_Exit
 
-void
-ExceptionHandler(ExceptionType which)
-{
+void ExceptionHandler(ExceptionType which) {
     int type = machine->ReadRegister(2);
 	static int pf = 0;
 	int dir, page;
-	static int cnt = 3;
+	//static int cnt = 3;
 
 	switch ( which ) {
 	case SyscallException:
@@ -94,8 +92,8 @@ ExceptionHandler(ExceptionType which)
 		page = dir / PageSize;
 		DEBUG('w', "%d: PageFaultException at addr %d in log page %d\n", ++pf, dir, page );
 		currentThread->space->load(page);
-		DEBUG('v', "Regresa de load\n");
-		if (!cnt--) exit(0);
+		//DEBUG('v', "Regresa de load\n");
+		//if (!cnt--) exit(0);
 		break;
 	default:
 		printf( "Unexpected exception %d\n", which );

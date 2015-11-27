@@ -52,8 +52,9 @@ extern PostOffice* postOffice;
 #ifdef VM
 #include "bitmap.h"
 extern int pTLB;
-extern OpenFile *swap;
+extern int pMem;
 extern int pSwap;
+extern OpenFile *swap;
 extern BitMap *memMap;
 extern BitMap *swapMap;
 #endif
