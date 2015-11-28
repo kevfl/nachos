@@ -236,7 +236,7 @@ void AddrSpace::setFilename(const char *filename, int len) {
 */
 void AddrSpace::updateTLB(int page) {
 	// Actualiza pageTable antes de desalojar página del TLB
-	if ( machine->tlb[ pTLB ].valid ) {
+	if ( machine->tlb[ pTLB ].valid ) {								//	Conflict misses
 		pageTable[ machine->tlb[ pTLB ].virtualPage ].use = machine->tlb[ pTLB ].use;
 		pageTable[ machine->tlb[ pTLB ].virtualPage ].dirty = machine->tlb[ pTLB ].dirty;
 	}
@@ -309,6 +309,12 @@ void AddrSpace::fromFile(int page) {
 	}
 }
 
+/*
+	Metodo getBlank, recibe como parámetro una página.
+	Obtiene una página, la rellena de ceros. Sirve para pila y datos no
+	inicializados.
+	Modifica dicha página.
+*/
 void AddrSpace::getBlank(int page) {
 	pageTable[page].valid = true;
 
@@ -344,8 +350,8 @@ void AddrSpace::load(int page) {
 				DEBUG('v', "\tPág. %d viene del archivo\n", page );		//	Compulsory misses
 				fromFile(page);
 				updateTLB(page);
-			} else {						// Es una página en blanco.	//	Compulsory misses
-				DEBUG('v', "\tPág. %d de ceros\n", page );
+			} else {						// Es una página en blanco.
+				DEBUG('v', "\tPág. %d de ceros\n", page );				//	Compulsory misses
 				getBlank(page);
 				updateTLB(page);
 			}
