@@ -57,7 +57,7 @@ extern int pSwap;
 extern OpenFile *swap;
 extern BitMap *memMap;
 extern BitMap *swapMap;
-extern TranslationEntry *TPI;
+extern int *TPI;
 #endif
 
 #endif // SYSTEM_H

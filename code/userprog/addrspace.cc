@@ -247,7 +247,7 @@ void AddrSpace::updateTLB(int page) {
 	machine->tlb[ pTLB ].dirty = pageTable[ page ].dirty;
 	machine->tlb[ pTLB ].use = pageTable[ page ].use;
 	machine->tlb[ pTLB ].dirty = pageTable[ page ].dirty;
-	machine->tlb[ pTLB ].readonly = pageTable[ page ].readonly;
+	machine->tlb[ pTLB ].readOnly = pageTable[ page ].readOnly;
 	//DEBUG('v', "\tvirtualPage = %d\n", pageTable[ page ].virtualPage );
 	//DEBUG('v', "\tphysicalPage = %d\n", pageTable[ page ].physicalPage );
 	//DEBUG('v', "\tdirty = %d\n", pageTable[ page ].dirty );
@@ -261,18 +261,73 @@ void AddrSpace::updateTLB(int page) {
 	puntero.
 	Devuelve una página libre.
 */
-int AddrSpace::getPage() {
+int AddrSpace::getPage(int page) {
 	int next = memMap->Find();
 	if (next == -1) {
 		// second chance
-		//pageTable[tinv[pMem]].dirty = true;
-		//if dirty toSwap(pMem);
+		pageTable[ TPI[pMem] ].valid = false;
+		if ( pageTable[ TPI[pMem] ].dirty ) {
+			toSwap( pMem );
+			for (int i = 0; i < TLBSize; ++i)
+				if ( machine->tlb[ i ].virtualPage == TPI[pMem] ) {
+					machine->tlb[ i ].valid = false;
+					break;
+				}
+			TPI[ pMem ] = -1;
+		}
 		next = pMem;
 		pMem = (pMem + 1) % NumPhysPages;
 	}
 	DEBUG('v', "Entregada la pág %d\n", next );
 	// update TPI
+	TPI[ next ] = page;
 	return next;
+}
+
+/*
+	Método toSwap. Recibe como parámetro.
+	Carga en el Swap, la página que se le indica.
+	Modifica el swap y la pageTable.
+*/
+void AddrSpace::toSwap(int page) {
+	swap = fileSystem->Open("SWAP");
+	if (swap == NULL) {
+		printf("Unable to open SWAP file\n");
+		return;
+	}
+	int next = swapMap->Find();
+	int swapAddr = next * PageSize;
+	int memAddr = page * PageSize;
+	swap->WriteAt(&(machine->mainMemory[memAddr]), PageSize, swapAddr);
+	pageTable[ TPI[page] ].physicalPage = next;
+	pageTable[ TPI[page] ].valid = false;
+}
+
+
+/*
+	Método fromSwap. Recibe como parámetro.
+	Desde el swap, carga la página que se indica.
+	Modifica la memoria principal, limpia ese espacio en el Swap.
+*/
+void AddrSpace::fromSwap(int page) {
+	swap = fileSystem->Open("SWAP");
+	if (swap == NULL) {
+		printf("Unable to open SWAP file\n");
+		return;
+	}
+	int inSwap = pageTable[ page ].physicalPage;
+	int swapAddr = inSwap * PageSize;
+
+	int physicalPage = getPage(page);
+	DEBUG('v', "physicalPage %d\n", physicalPage );
+
+	int memAddr = physicalPage * PageSize;
+	swap->ReadAt(&(machine->mainMemory[memAddr]), PageSize, swapAddr);
+
+	pageTable[ page ].physicalPage = physicalPage;
+	pageTable[ page ].valid = true;
+	pageTable[ page ].readOnly = false;
+	swapMap->Clear(inSwap);
 }
 
 /*
@@ -297,14 +352,19 @@ void AddrSpace::fromFile(int page) {
 		SwapHeader(&noffH);
 	ASSERT(noffH.noffMagic == NOFFMAGIC);
 	
-	int physicalPage = getPage();
+	int physicalPage = getPage(page);
 	DEBUG('v', "physicalPage %d\n", physicalPage );
 	pageTable[ page ].physicalPage = physicalPage;
+	pageTable[ page ].valid = true;
 	
 	int filAddr = noffH.code.inFileAddr + pageTable[page].virtualPage * PageSize;
 	int memAddr = /*noffH.code.virtualAddr +*/ physicalPage * PageSize;
 	DEBUG('v', "Escribe en RAM at %d. Inicio %d\n", memAddr, noffH.code.virtualAddr );
-	if (noffH.code.size > 0) {
+	int last = noffH.code.size + noffH.initData.size - page * PageSize;
+	if (last < PageSize) {
+		executable->ReadAt(&(machine->mainMemory[memAddr]), last, filAddr);
+		bzero(machine->mainMemory + memAddr + last, PageSize - last);
+	} else {
 		executable->ReadAt(&(machine->mainMemory[memAddr]), PageSize, filAddr);
 	}
 }
@@ -318,7 +378,7 @@ void AddrSpace::fromFile(int page) {
 void AddrSpace::getBlank(int page) {
 	pageTable[page].valid = true;
 
-	int physicalPage = getPage();
+	int physicalPage = getPage(page);
 	DEBUG('v', "physicalPage %d\n", physicalPage );
 	pageTable[ page ].physicalPage = physicalPage;
 
@@ -341,8 +401,8 @@ void AddrSpace::load(int page) {
 	} else {								// La página no está en la memoria.
 		DEBUG('v', "\tPág. %d no está en la memoria\n", page );
 		if (pageTable[page].dirty) {		// La página está sucia.
-			DEBUG('v', "\tPág. %d está sucia\n", page );				//	Capacity missis
-			//fromSwap(page);
+			DEBUG('v', "\tPág. %d está sucia\n", page );				//	Capacity misses.
+			fromSwap(page);
 			updateTLB(page);
 		} else {							// La página está limpia.
 			DEBUG('v', "\tPág. %d está limpia\n", page );
