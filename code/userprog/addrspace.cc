@@ -203,8 +203,7 @@ void AddrSpace::SaveState()
 //      For now, tell the machine where to find the page table.
 //----------------------------------------------------------------------
 
-void AddrSpace::RestoreState()
-{
+void AddrSpace::RestoreState(){
 /*
 	Reinicia el estado de la TBL, que se ocupa que este inválido.
 */
@@ -327,16 +326,16 @@ void AddrSpace::load(int page) {
 	} else {								// La página no está en la memoria.
 		DEBUG('v', "\tPág. %d no está en la memoria\n", page );
 		if (pageTable[page].dirty) {		// La página está sucia.
-			DEBUG('v', "\tPág. %d está sucia\n", page );
+			DEBUG('v', "\tPág. %d está sucia\n", page );				//	Capacity missis
 			//fromSwap(page);
 			updateTLB(page);
 		} else {							// La página está limpia.
 			DEBUG('v', "\tPág. %d está limpia\n", page );
 			if ( inFile(page) ) {			// Proviene de un archivo.
-				DEBUG('v', "\tPág. %d viene del archivo\n", page );
+				DEBUG('v', "\tPág. %d viene del archivo\n", page );		//	Compulsory misses
 				fromFile(page);
 				updateTLB(page);
-			} else {						// Es una página en blanco.
+			} else {						// Es una página en blanco.	//	Compulsory misses
 				DEBUG('v', "\tPág. %d de ceros\n", page );
 				getBlank(page);
 				updateTLB(page);
