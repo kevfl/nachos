@@ -236,15 +236,22 @@ void AddrSpace::setFilename(const char *filename, int len) {
 	Modifica la TLB en la dirección dada por page.
 */
 void AddrSpace::updateTLB(int page) {
+	// Actualiza pageTable antes de desalojar página del TLB
+	if ( machine->tlb[ pTLB ].valid ) {
+		pageTable[ machine->tlb[ pTLB ].virtualPage ].use = machine->tlb[ pTLB ].use;
+		pageTable[ machine->tlb[ pTLB ].virtualPage ].dirty = machine->tlb[ pTLB ].dirty;
+	}
 	DEBUG('v', "En posición %d del TLB copio pageTable[%d]\n", pTLB, page );
 	machine->tlb[ pTLB ].virtualPage = pageTable[ page ].virtualPage;
 	machine->tlb[ pTLB ].physicalPage = pageTable[ page ].physicalPage;
+	machine->tlb[ pTLB ].valid = true;
 	machine->tlb[ pTLB ].dirty = pageTable[ page ].dirty;
+	machine->tlb[ pTLB ].use = pageTable[ page ].use;
+	machine->tlb[ pTLB ].dirty = pageTable[ page ].dirty;
+	machine->tlb[ pTLB ].readonly = pageTable[ page ].readonly;
 	//DEBUG('v', "\tvirtualPage = %d\n", pageTable[ page ].virtualPage );
 	//DEBUG('v', "\tphysicalPage = %d\n", pageTable[ page ].physicalPage );
 	//DEBUG('v', "\tdirty = %d\n", pageTable[ page ].dirty );
-	machine->tlb[ pTLB ].use = true;
-	machine->tlb[ pTLB ].valid = true;
 	pTLB = (pTLB + 1) % TLBSize;
 }
 
@@ -258,12 +265,14 @@ void AddrSpace::updateTLB(int page) {
 int AddrSpace::getPage() {
 	int next = memMap->Find();
 	if (next == -1) {
+		// second chance
 		//pageTable[tinv[pMem]].dirty = true;
-		//toSwap(pMem);
+		//if dirty toSwap(pMem);
 		next = pMem;
 		pMem = (pMem + 1) % NumPhysPages;
 	}
 	DEBUG('v', "Entregada la pág %d\n", next );
+	// update TPI
 	return next;
 }
 

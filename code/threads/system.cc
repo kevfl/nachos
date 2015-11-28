@@ -47,6 +47,7 @@ int pSwap;
 OpenFile *swap;
 BitMap *memMap;
 BitMap *swapMap;
+TranslationEntry *TPI;
 #endif
 
 
@@ -209,6 +210,9 @@ Initialize(int argc, char **argv)
 	swap = fileSystem->Open("SWAP");
 	memMap = new BitMap(NumPhysPages);
 	swapMap = new BitMap(NumPhysPages * 2);
+	TPI = new TranslationEntry[NumPhysPages];
+    for (int i = 0; i < NumPhysPages; ++i)
+		TPI[i].valid = false;
 #endif
 
 }
@@ -239,6 +243,8 @@ Cleanup()
 	swap = NULL;
 	delete memMap;
 	delete swapMap;
+    if (TPI != NULL)
+        delete [] TPI;
 #endif
 
 #ifdef FILESYS_NEEDED
