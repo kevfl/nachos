@@ -33,7 +33,6 @@ class AddrSpace {
 
 	void setFilename(const char *filename, int len);	//  Nombra el archivo con el nombre que nos pasan.
 	void load(int page);		//  Implementa tabla de decisión para cargar la página en el TLB.
-	bool inFile(int page);	//	Indica si la página existe o no en el archivo.
 
   private:
     TranslationEntry *pageTable;	// Assume linear page table translation
@@ -42,8 +41,11 @@ class AddrSpace {
 					// address space
 	char *file;									// Nombre del archivo.
 
-	int getPage();							//  Busca si existe una posición de memoria libre.
+	bool inFile(int page);	//	Indica si la página existe o no en el archivo.
+	int getPage(int page);							//  Busca si existe una posición de memoria libre.
 															//  Devuelve una página libre.
+	void toSwap(int page);
+	void fromSwap(int page);
 	void fromFile(int page);		//  Si es un archivo válido, modifica el pageTable en la página 
 	void getBlank(int page);
 															//  que se manda como parámetro, además carga dicha página memoria.

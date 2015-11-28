@@ -47,7 +47,7 @@ int pSwap;
 OpenFile *swap;
 BitMap *memMap;
 BitMap *swapMap;
-TranslationEntry *TPI;
+int *TPI;
 #endif
 
 
@@ -207,12 +207,11 @@ Initialize(int argc, char **argv)
 	pMem = 0;
 	pSwap = 0;
 	ASSERT( fileSystem->Create("SWAP", 0) );
-	swap = fileSystem->Open("SWAP");
 	memMap = new BitMap(NumPhysPages);
 	swapMap = new BitMap(NumPhysPages * 2);
-	TPI = new TranslationEntry[NumPhysPages];
+	TPI = new int[NumPhysPages];
     for (int i = 0; i < NumPhysPages; ++i)
-		TPI[i].valid = false;
+		TPI[i] = -1;
 #endif
 
 }
