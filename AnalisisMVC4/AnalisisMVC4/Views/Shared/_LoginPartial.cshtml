@@ -1,0 +1,14 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+        Bienvenido, @Html.ActionLink(User.Identity.Name, "Cambia_Contraseña", "Usuario", routeValues: null, htmlAttributes: new { @class = "username", title = "Cambia_Contraseña" })!
+        @using (Html.BeginForm("LogOff", "Usuario", FormMethod.Post, new { id = "logoutForm" })) {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Salir</a>
+        }
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("Añadir usuario", "AddUser", "Usuario", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

@@ -1,0 +1,19 @@
+<authentication mode="Forms">
+        <forms loginUrl="~/Account/Login" timeout="5" />
+    </authentication>
+    <authorization>
+        <allow roles ="Administrador, Supervisor, Analista" />
+        <deny users="?"/>
+    </authorization>
+	
+	
+	<connectionStrings>
+        <add name="Cnn_SDB"
+            providerName="System.Data.SqlClient"
+            connectionString="Data Source=10.4.1.5,1433\MSSQLSERVER;Initial Catalog=aspnetdb;Integrated Security=False;User ID=sa;Password=alfa1.1;MultipleActiveResultSets=True"
+        />
+        <add name="Cnn_DB"
+            providerName="System.Data.SqlClient"
+            connectionString="Data Source=10.4.1.5,1433\MSSQLSERVER;Initial Catalog=EUROTECH;Integrated Security=False;&#xD;&#xA;                          User ID=sa;&#xD;&#xA;                          Password=alfa1.1;&#xD;&#xA;                          MultipleActiveResultSets=True"
+        />
+    </connectionStrings>

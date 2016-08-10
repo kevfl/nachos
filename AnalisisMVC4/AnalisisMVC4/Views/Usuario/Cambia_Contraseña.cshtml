@@ -1,0 +1,30 @@
+﻿@model AnalisisMVC4.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Administración de cuenta";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>Nombre de usuario <strong>@User.Identity.Name</strong>.</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+<section id="externalLogins">
+    @Html.Action("RemoveExternalLogins")
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
